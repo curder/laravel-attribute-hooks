@@ -101,6 +101,46 @@ trait AttributeHooks
 }
 ```
 
+## Tests
+
+测试使用到了日志 [`timacdonald/log-fake`](https://github.com/timacdonald/log-fake) 扩展包。
+
+```php
+<?php
+
+use App\Models\Post;
+use TiMacDonald\Log\LogFake;
+use TiMacDonald\Log\LogEntry;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+
+uses(LazilyRefreshDatabase::class);
+
+it('can call creating event', function () {
+    $post = Post::factory()->create();
+
+    expect($post)->slug->toEqual(str($post->title)->slug()->toString());
+});
+
+it('can call saved event', function () {
+    LogFake::bind();
+
+    $post = Post::factory()->create();
+
+    $post->title = 'Updated Title';
+    $post->save();
+    Log::assertLogged(fn (LogEntry $log) => $log->level === 'debug'
+        && $log->message === 'Post was updated'
+    );
+
+    $post->delete();
+    $post->title = 'Updated Title again';
+    $post->save();
+    Log::assertLogged(fn (LogEntry $log) => $log->level === 'debug'
+        && $log->message === 'Post was trashed'
+    );
+});
+```
+
 更多变更[查看提交历史](https://github.com/curder/laravel-attribute-hooks/commit/b3b361d7316fd1b9553700f35d8a571c7a007950)
 
 下面变更前后的预览图。

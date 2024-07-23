@@ -2,27 +2,20 @@
 
 namespace App\Models;
 
+use App\Attributes\BeforeCreate;
+use App\Concerns\AttributeHooks;
+use App\Attributes\AfterSaveCommit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+#[BeforeCreate('normalizeTitle', 'generateSlug')]
+#[AfterSaveCommit('recordEvent')]
 class Post extends Model
 {
-    use HasFactory, SoftDeletes;
+    use AttributeHooks, HasFactory, SoftDeletes;
 
     protected $guarded = [];
-
-    protected static function booted(): void
-    {
-        self::creating(function (Post $model) {
-            $model->normalizeTitle();
-            $model->generateSlug();
-        });
-
-        self::saved(function (Post $model) {
-            $model->recordEvent();
-        });
-    }
 
     protected function normalizeTitle(): void
     {

@@ -1,5 +1,8 @@
 # Laravel Attribute hooks
 
+[![Check & fix styling](https://github.com/curder/laravel-attribute-hooks/actions/workflows/pint.yml/badge.svg?branch=master)](https://github.com/curder/laravel-attribute-hooks/actions/workflows/pint.yml)
+[![Test Laravel Github action](https://github.com/curder/laravel-attribute-hooks/actions/workflows/run-test.yml/badge.svg?branch=master)](https://github.com/curder/laravel-attribute-hooks/actions/workflows/run-test.yml)
+
 今天在 [x.com](https://x.com/tonysmdev/status/1815576767014338561) 上看到了 Laravel 的 Attribute hooks，感觉非常实用，于是记录一下。
 
 ## Model

@@ -143,7 +143,7 @@ it('can call saved event', function () {
 
 更多变更[查看提交历史](https://github.com/curder/laravel-attribute-hooks/commit/b3b361d7316fd1b9553700f35d8a571c7a007950)
 
-下面变更前后的预览图。
+## Preview
 
 ![Before](https://github.com/user-attachments/assets/0a8033bd-c9dd-43f6-b531-d5236d34c6b3)
 

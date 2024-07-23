@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Post;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-use TiMacDonald\Log\LogEntry;
 use TiMacDonald\Log\LogFake;
+use TiMacDonald\Log\LogEntry;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(LazilyRefreshDatabase::class);
 
